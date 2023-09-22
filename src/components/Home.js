@@ -5,6 +5,7 @@ import styles from '../css/styles';
 const HomeLogin = () =>{
 
     return (
+        <View style={styles.content}>
         <ImageBackground source={logo} style={styles.BgImage} >
             <Text style={styles.textTitle}>Welcome To {'\n'}Shh!</Text>
             <Text style={styles.textTitle1}>A Hub Where Whispers Echo {'\n'}Loudest</Text>
@@ -28,6 +29,8 @@ const HomeLogin = () =>{
                 </View>
             </View>
         </ImageBackground>
+
+        </View>
     );
 }   
  export default HomeLogin; 
