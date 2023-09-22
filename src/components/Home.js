@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Text, Pressable,ImageBackground } from 'react-native';
-import logo from '../../assets/Backround.png';
+import logo from '../../assets/bg.png';
 import styles from '../css/styles';
 const HomeLogin = () =>{
 
     return (
-        <View style={styles.container}>
         <ImageBackground source={logo} style={styles.BgImage} >
             <Text style={styles.textTitle}>Welcome To {'\n'}Shh!</Text>
             <Text style={styles.textTitle1}>A Hub Where Whispers Echo {'\n'}Loudest</Text>
@@ -29,7 +28,6 @@ const HomeLogin = () =>{
                 </View>
             </View>
         </ImageBackground>
-        </View>
     );
 }   
  export default HomeLogin; 
