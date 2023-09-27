@@ -1,18 +1,56 @@
 import React, { View, Text, StyleSheet, Pressable } from "react-native";
+import { useState } from 'react';
 
 const  PlayScreen = () => {
+    const [Language, setLanguage] = useState('en');
+    const [Index, setIndex] = useState(0);
+
+    const languageDate =[
+        {en:"Hello", vi:"xin chào"},
+        {en:"Mouse", vi:"Chuột"},
+        {en:"Table", vi:"Bàn"}
+    ]
+
+
+    
+    
+    const toggleLanguage = () => {
+        if (Language === 'en') {
+            setLanguage('vi');
+        } else {
+            setLanguage('en');
+        }
+    };
+    const nextItem = () => {
+        if (Index < languageDate.length - 1) {
+            setIndex(Index + 1);
+        }
+    };
+    const previousItem = () =>{
+        if (Index){
+            setIndex(Index -1)
+        }
+    }
+
+    const currentData = languageDate[Index];
+
     return (
         <View style={styles.contents}>
             <View style={styles.topTitle}>
-              <Text style={styles.Title}>Play(46 Cards)</Text>
+              <Text style={styles.Title}>Play({languageDate.length} Cards)</Text>
             </View>
-            <Pressable style={styles.cardText}>
+            <Pressable style={styles.cardText} onPress={toggleLanguage}>
+                <View style={styles.cardText_middle}>
+                    <Text style={styles.TextChange}>
+                            {currentData[Language]}
+                    </Text>
+                </View>
             </Pressable>
             <View style={styles.Derects}>
-                <Pressable style={styles.DerectsBtn}>
-                    <Text style={styles.TextBtn}>Previous</Text>
+                <Pressable style={styles.DerectsBtn} >
+                    <Text style={styles.TextBtn} onPress={previousItem}>Previous</Text>
                 </Pressable>
-                <Pressable style={styles.DerectsBtn}>
+                <Pressable style={styles.DerectsBtn} onPress={nextItem}>
                     <Text style={styles.TextBtn}>Next</Text>
                 </Pressable>
             </View>
@@ -41,14 +79,28 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center"
     },
+    Title:{
+        fontSize:20,
+        fontWeight:"600"
+    }
+    ,
 
     cardText:{
         width: '90%', 
         height: '50%',
         marginTop:20,
-        backgroundColor:"#DC143C",
+        backgroundColor:"#FE2E54",
         alignSelf:'center',
         borderRadius:10        
+    },
+    cardText_middle:{
+        flex: 1,
+        alignItems: 'center', 
+        justifyContent: 'center', 
+    },
+    TextChange:{
+        fontSize:60,
+        color:"white",
     },
     Derects:{
         flexDirection:'row',
@@ -59,27 +111,30 @@ const styles = StyleSheet.create({
         width:100,
         height:30,
         borderWidth:1,
-        borderColor:'#DC143C',
+        borderColor:'#FE2E54',
         justifyContent:'center',
         alignItems:'center',
-        borderRadius:2
+        borderRadius:3
     },
     TextBtn:{
-        color:'#DC143C'
+        color:'#FE2E54'
+    },
+    BottomBtn: {
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     BottomBtn_Tap:{
-        width: '90%', 
-        
+        width: '90%',
+        marginVertical: 10,
+        paddingVertical: 20,
+        backgroundColor: '#FFFFFF',
+        alignItems: 'center',
+        borderRadius:3
     },
     BottomBtn_Text:{
-        marginTop:10,
-        height:30,
-        backgroundColor:"#FFFFFF",
-        color:'#DC143C',
+        color: '#FE2E54',
+        fontSize:18
     }
-
-
-
 
   })
 
