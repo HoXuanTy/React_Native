@@ -3,15 +3,15 @@ import { useState } from 'react';
 const PlayScreen = () => {
     const [Language, setLanguage] = useState('en');
     const [Index, setIndex] = useState(0);
-    const [languageDate, setLanguageDate] = useState([
-      { en: "Hello", vi: "xin chào" },
-      { en: "Mouse", vi: "Chuột" },
-      { en: "Table", vi: "Bàn" },
-      { en: "computor", vi: "Máy Tính" }
-    ]);
-  
+    
+    const Data = [ { en: "Hello", vi: "xin chào" },
+    { en: "Mouse", vi: "Chuột" },
+    { en: "Table", vi: "Bàn" },
+    { en: "computor", vi: "Máy Tính" }]
+    
+    const [languageDate, setLanguageDate] = useState(Data);
     const [currentData, setCurrentData] = useState(languageDate[0]);
-  
+
     const toggleLanguage = () => {
       if (Language === 'en') {
         setLanguage('vi');
@@ -22,14 +22,14 @@ const PlayScreen = () => {
   
     const nextItem = () => {
       if (Index < languageDate.length - 1) {
-        setIndex(Index + 1);
+        setIndex(Index+1)
         setCurrentData(languageDate[Index + 1]);
       }
     };
   
     const previousItem = () => {
       if (Index > 0) {
-        setIndex(Index - 1);
+        setIndex(Index-1);
         setCurrentData(languageDate[Index - 1]);
       }
     };
@@ -51,7 +51,11 @@ const PlayScreen = () => {
         }
       }
     };
-  
+    
+    const handReset =()=>{
+      setLanguageDate(Data);
+    }
+
     return (
       <View style={styles.contents}>
         <View style={styles.topTitle}>
@@ -76,7 +80,7 @@ const PlayScreen = () => {
           <Pressable style={styles.BottomBtn_Tap} onPress={handleRemove}>
             <Text style={styles.BottomBtn_Text}>Remove from Deck</Text>
           </Pressable>
-          <Pressable style={styles.BottomBtn_Tap}>
+          <Pressable style={styles.BottomBtn_Tap} onPress={handReset}>
             <Text style={styles.BottomBtn_Text}>Reset Deck</Text>
           </Pressable>
         </View>
