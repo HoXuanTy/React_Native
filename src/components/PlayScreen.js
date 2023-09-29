@@ -9,7 +9,7 @@ const PlayScreen = () => {
     { en: "Hello", vi: "xin chào" },
     { en: "Mouse", vi: "Chuột" },
     { en: "Table", vi: "Bàn" },
-    { en: "computor", vi: "Máy Tính" }]
+    { en: "Computor", vi: "Máy Tính" }]
     
     const [languageDate, setLanguageDate] = useState(Data);
     const [currentData, setCurrentData] = useState(languageDate[0]);
@@ -53,7 +53,8 @@ const PlayScreen = () => {
     };
     
     const handReset =()=>{
-      setLanguageDate(Data);
+      setLanguageDate([...Data]);
+      setCurrentData(languageDate[0]);
     }
 
     return (
