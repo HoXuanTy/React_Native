@@ -1,10 +1,12 @@
 import React, { View, Text, StyleSheet, Pressable } from "react-native";
 import { useState } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 const PlayScreen = () => {
     const [Language, setLanguage] = useState('en');
     const [Index, setIndex] = useState(0);
     
-    const Data = [ { en: "Hello", vi: "xin chào" },
+    const Data = [ 
+    { en: "Hello", vi: "xin chào" },
     { en: "Mouse", vi: "Chuột" },
     { en: "Table", vi: "Bàn" },
     { en: "computor", vi: "Máy Tính" }]
@@ -20,18 +22,16 @@ const PlayScreen = () => {
       }
     };
   
+ 
     const nextItem = () => {
-      if (Index < languageDate.length - 1) {
-        setIndex(Index+1)
-        setCurrentData(languageDate[Index + 1]);
-      }
-    };
+      setIndex((Index) => (Index + 1) % languageDate.length);
+      setCurrentData(languageDate[Index]);
+  };
+  
   
     const previousItem = () => {
-      if (Index > 0) {
-        setIndex(Index-1);
-        setCurrentData(languageDate[Index - 1]);
-      }
+        setIndex((Index)=> (Index -1 + languageDate.length) % languageDate.length);
+        setCurrentData(languageDate[Index]);
     };
   
     const handleRemove = () => {
@@ -84,6 +84,16 @@ const PlayScreen = () => {
             <Text style={styles.BottomBtn_Text}>Reset Deck</Text>
           </Pressable>
         </View>
+        <View style={styles.CtnBottom}>
+            <Pressable>
+              <Icon style={styles.Iconbtn} name="play" size={20} color="#FE2E54" />
+              <Text style={styles.CtnBottom_text}>Play</Text>
+            </Pressable>
+            <Pressable>
+            <Icon style={styles.Iconbtn} name="gear" size={20} color="#FE2E54" />
+              <Text style={styles.CtnBottom_text}>Settings</Text>
+            </Pressable>
+        </View>
       </View>
     );
   }
@@ -92,7 +102,7 @@ const styles = StyleSheet.create({
     contents:{
         flex: 1,
         marginTop:30,
-        backgroundColor:"#E2E1E1"
+        backgroundColor:"#EFEFF3"
     },
     topTitle:{
         height:50,
@@ -156,6 +166,20 @@ const styles = StyleSheet.create({
     BottomBtn_Text:{
         color: '#FE2E54',
         fontSize:18
+    },
+    CtnBottom:{
+      flex:1,
+      flexDirection:"row",
+      justifyContent:"space-around",
+      alignItems:"center",
+      marginTop:10,
+      backgroundColor:"#FFFFFF"
+    },
+    CtnBottom_text:{
+      color: '#FE2E54'
+    },
+    Iconbtn:{
+      textAlign:"center"
     }
 
   })
